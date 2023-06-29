@@ -77,13 +77,13 @@ Observing the features that hold the most impact on the respondent's vaccination
 ## Repository Structure
 
 ├── data<br/>
-│ ├── models
-│ └── H1N1_and_Seasoned_Flu_Vaccines_Feature_Information.txt
+│ ├── models<br/>
+│ └── H1N1_and_Seasoned_Flu_Vaccines_Feature_Information.txt<br/>
 ├── images<br/>
 ├── python_code<br/>
-│ ├── **init**.py
-│ ├── my_classes.py
-│ └── my_functions.py
+│ ├── **init**.py<br/>
+│ ├── my_classes.py<br/>
+│ └── my_functions.py<br/>
 ├── H1N1_Vaccine_Classification_Notebook.ipynb<br/>
 ├── Presentation.pdf<br/>
 ├── gitignore<br/>
