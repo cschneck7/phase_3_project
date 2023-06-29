@@ -6,8 +6,8 @@
 
 [Notebook](H1N1_Vaccine_Classification_Notebook.ipynb)<br/>
 [Presentation](Presentation.pdf)<br/>
-[Data](https://www.drivendata.org/competitions/66/flu-shot-learning/data/)
-[Feature Descriptions](https://github.com/cschneck7/phase_3_project/blob/main/data/H1N1%20and%20Seasonal%20Flu%20Vaccines%20Feature%20Information.txt)
+[Data](https://www.drivendata.org/competitions/66/flu-shot-learning/data/)<br/>
+[Feature Descriptions](https://github.com/cschneck7/phase_3_project/blob/main/data/H1N1_and_Seasonal_Flu_Vaccines_Feature_Information.txt)
 
 ## Overview
 
