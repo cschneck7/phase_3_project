@@ -64,6 +64,16 @@ Observing the features that hold the most impact on the respondent's vaccination
 
 <strong>Fill out missing data about health insurance.</strong> A lot of entries were missing information on respondant's having access to health insurance so this feature was ommited. This feature may take a very important role in someone's decision to be vaccinated. As found getting a doctor's reccomendatin greatly improved the rate of someone recieving this vaccination, therefore if more people had access to primary physicians the population that recieves recommendations will increase and in turn the vaccination rate.
 
+## References
+
+[1] <a id='h1n1_cdc_article' href='https://www.cdc.gov/flu/pandemic-resources/2009-h1n1-pandemic.html'>https://www.cdc.gov/flu/pandemic-resources/2009-h1n1-pandemic.html</a>
+
+[2] <a id='About the National Immunization Survery' href="https://webarchive.loc.gov/all/20140511031000/http://www.cdc.gov/nchs/nis/about_nis.htm#h1n1">https://webarchive.loc.gov/all/20140511031000/http://www.cdc.gov/nchs/nis/about_nis.htm#h1n1</a>
+
+[3] <a href='https://www.drivendata.org/competitions/66/flu-shot-learning/data/'>https://www.drivendata.org/competitions/66/flu-shot-learning/data/</a>
+
+[4] <a id='Missing Data Imputation using Regression' href='https://www.kaggle.com/code/shashankasubrahmanya/missing-data-imputation-using-regression'>https://www.kaggle.com/code/shashankasubrahmanya/missing-data-imputation-using-regression</a>
+
 ## Repository Structure
 
 ├── data<br/>
