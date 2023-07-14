@@ -31,28 +31,34 @@ class RandomImputer(BaseEstimator, TransformerMixin):
     Randomly imputes values for missing data in new columns.
     Values are based off of existing values and rates of occurences.
     
-    Initialized with optional parameter columns which mark which
-    columns will be transformed, if left to default value 'all', all
+    Initialized with optional argument columns which specify
+    columns to be transformed, if left to default value 'all_missing_columns', all
     columns with missing values will be filled.
     '''
     
 #     Initializes class object
     def __init__(self, missing_columns='all_missing_columns'):
         self.missing_columns = missing_columns
+ 
 
-#     If columns equals all_missing_columns sets attribute to all missing columns 
     def fit(self, X, y=None):
+#     Finds column names containing missing values if missing_columns equals all_missing_columns
         if self.missing_columns == 'all_missing_columns':
             nan_amount = X.isna().sum()
             self.missing_columns = list(nan_amount[nan_amount>0].index)
 #     Handles if single column entered as string
+#     str type changed to list for future for loop operation
         elif type(self.missing_columns) == str:
             self.missing_columns = [self.missing_columns]
-        
+
+#     Initializes empty dict which will contain distribution of existing values for columns
+#     in missing_columns
         feature_value_info = {}
+#     Iterates through missing_columns finding value distributions 
         for col in self.missing_columns:
             feature_value_info[col] = X.loc[X[col].notnull(), col].value_counts(normalize=True)
-            
+
+#     Saves distributions as parameter
         self.feature_value_info = feature_value_info
         return self
             
@@ -61,13 +67,14 @@ class RandomImputer(BaseEstimator, TransformerMixin):
 #         Sets random seed for random seed generation for iterative
 #         calls to random.choice in for loop
         np.random.seed(7337)
-#         random seeds generation for for loop
+#         random seeds generation for loop
         rand_seeds = np.random.randint(0, 10e3, len(self.missing_columns), 'int64')
         
         df = X.copy()
         
+#     Iterates through missing columns
         for i, col in enumerate(self.missing_columns):
-#     Creates copy of column to have calues imputed into
+#     Creates copy of column to have values imputed into
             df[col+'_imp'] = df[col]
 #     Finds number of missing values in column
             number_missing = df[col].isnull().sum()
@@ -178,8 +185,8 @@ class IterativeClassification(BaseEstimator, TransformerMixin):
         models = {}
         accuracy_scores = {}
         
-#         Iterates through missing_columns, creating a model, updating feature with predicted values
-#         at each iteration
+#         Iterates through missing_columns, creating a model, updating iterations target
+#         feature with predicted values at each iteration
         for col in self.missing_columns:
 #             creates dataframe for this iterations predictives features
 #             This involves ohe categorical features
@@ -228,8 +235,9 @@ class IterativeClassification(BaseEstimator, TransformerMixin):
             temp_df = self._step_features(pred_df, col)
 #             Loads this iterations fitted model
             dt_model = self.dt_models[col]
-#             fits original missing values with predicted values
+#            imports predicted values into missing locations for predictive and determined dataframe
             det_df.loc[X[col].isnull(), 'Det_'+col] = dt_model.predict(temp_df)[X[col].isnull()]
+            pred_df.loc[X[col].isnull(), col+'_imp'] = dt_model.predict(temp_df)[X[col].isnull()]
 
 #         Creates transfromed df determined features as well as nontransformed features
         final_df = pd.concat([det_df, X[self.leftover_features]], axis=1)
